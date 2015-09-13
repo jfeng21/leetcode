@@ -1,0 +1,49 @@
+#
+# common definitions for all make files...
+#
+BINDIR := bin
+OBJDIR := obj
+
+SOURCES = $(strip $(wildcard *.c *.cc *.cxx *.cpp))
+HEADERS = $(strip $(wildcard *.h *.hh *.hxx *.hpp))
+OBJECTS = $(strip $(patsubst %.c,%.o, $(filter %.c, $(SOURCES))))
+OBJECTS += $(strip $(patsubst %.cc,%.o, $(filter %.cc, $(SOURCES))))
+OBJECTS += $(strip $(patsubst %.cxx,%.o, $(filter %.cxx, $(SOURCES))))
+OBJECTS += $(strip $(patsubst %.cpp,%.o, $(filter %.cpp, $(SOURCES))))
+LOCALOBJS = $(addprefix $(OBJDIR)/, $(OBJECTS))
+
+$(OBJDIR)/%.o: %.c | $(OBJDIR) $(BINDIR)
+	$(COMPILE.c) $< -o $@
+    
+$(OBJDIR)/%.o: %.cc | $(OBJDIR) $(BINDIR)
+	$(COMPILE.c) $< -o $@
+
+$(OBJDIR)/%.o: %.cxx | $(OBJDIR) $(BINDIR)
+	$(COMPILE.c) $< -o $@
+
+$(OBJDIR)/%.o: %.cpp | $(OBJDIR) $(BINDIR)
+	$(COMPILE.c) $< -o $@
+
+$(OBJDIR):
+	@mkdir $(OBJDIR)
+
+$(BINDIR):
+	@mkdir $(BINDIR)
+
+show:
+	@echo "\n---------- Happy coding! ----------"
+	@echo "  Sub Directories:"
+	@echo "    $(DIRS)"
+	@echo "  Source Files:"
+	@echo "    $(SOURCES)"
+	@echo "  Headers:"
+	@echo "    $(HEADERS)"
+	@echo "  Objects:"
+	@echo "    $(LOCALOBJS)"
+	@echo "\n"
+
+clean:
+	@echo "remove ./obj and ./bin..."
+	@rm -rf $(OBJDIR) $(BINDIR)
+
+.PHONY: show clean
