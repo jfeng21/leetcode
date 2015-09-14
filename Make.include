@@ -6,11 +6,8 @@ OBJDIR := obj
 
 SOURCES = $(strip $(wildcard *.c *.cc *.cxx *.cpp))
 HEADERS = $(strip $(wildcard *.h *.hh *.hxx *.hpp))
-OBJECTS = $(strip $(patsubst %.c,%.o, $(filter %.c, $(SOURCES))))
-OBJECTS += $(strip $(patsubst %.cc,%.o, $(filter %.cc, $(SOURCES))))
-OBJECTS += $(strip $(patsubst %.cxx,%.o, $(filter %.cxx, $(SOURCES))))
-OBJECTS += $(strip $(patsubst %.cpp,%.o, $(filter %.cpp, $(SOURCES))))
-LOCALOBJS = $(addprefix $(OBJDIR)/, $(OBJECTS))
+OBJNAMES = $(strip $(patsubst %,%.o, $(basename $(SOURCES))))
+LOCALOBJS = $(addprefix $(OBJDIR)/, $(OBJNAMES))
 
 $(OBJDIR)/%.o: %.c | $(OBJDIR) $(BINDIR)
 	$(COMPILE.c) $< -o $@
