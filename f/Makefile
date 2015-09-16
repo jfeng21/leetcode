@@ -1,7 +1,7 @@
 ROOT = ..
 PLATFORM = $(shell $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
-include $(ROOT)/Make.include
+include $(ROOT)/Make.include.j
 
 #
 # all targets to build...
@@ -15,19 +15,9 @@ include $(ROOT)/Make.include
 #
 # all targets...
 #
-TARGETS = 
+TARGETS = $(SOURCES:.java=.class)
 
 all: $(TARGETS)
-
-#array_to_BST: $(BINDIR)/array_to_BST
-
-BINARIES = $(strip $(addprefix $(BINDIR)/, $(TARGETS)))
-
-#
-# static pattern rules to make certain target...
-#
-$(BINARIES): $(BINDIR)/%: $(OBJDIR)/%.o
-	$(LINK.c) -o $@ $< $(STDLIBS)
 
 help:
 	@echo "Targets to build:"

@@ -1,32 +1,31 @@
 #
-# common definitions for all make files...
+# common definitions for all make files to build C/C++ program...
 #
 BINDIR := bin
-OBJDIR := obj
 
 SOURCES = $(strip $(wildcard *.c *.cc *.cxx *.cpp))
 HEADERS = $(strip $(wildcard *.h *.hh *.hxx *.hpp))
 OBJNAMES = $(strip $(patsubst %,%.o, $(basename $(SOURCES))))
 LOCALOBJS = $(addprefix $(OBJDIR)/, $(OBJNAMES))
 
-$(OBJDIR)/%.o: %.c | $(OBJDIR) $(BINDIR)
-	$(COMPILE.c) $< -o $@
-    
-$(OBJDIR)/%.o: %.cc | $(OBJDIR) $(BINDIR)
-	$(COMPILE.c) $< -o $@
-
-$(OBJDIR)/%.o: %.cxx | $(OBJDIR) $(BINDIR)
-	$(COMPILE.c) $< -o $@
-
-$(OBJDIR)/%.o: %.cpp | $(OBJDIR) $(BINDIR)
-	$(COMPILE.c) $< -o $@
-
-$(OBJDIR):
-	@mkdir $(OBJDIR)
-
 $(BINDIR):
 	@mkdir $(BINDIR)
 
+%: %.c | $(BINDIR)
+	$(LINK.c) $< $(STDLIBS) -o $@ 
+	@mv $@ $(BINDIR)/
+
+%: %.cc | $(BINDIR)
+	$(LINK.c) $< $(STDLIBS) -o $@ 
+	@mv $@ $(BINDIR)/
+
+%: %.cpp | $(BINDIR)
+	$(LINK.c) $< $(STDLIBS) -o $@ 
+	@mv $@ $(BINDIR)/
+
+%: %.cxx | $(BINDIR)
+	$(LINK.c) $< $(STDLIBS) -o $@ 
+	@mv $@ $(BINDIR)/
 show:
 	@echo "\n---------- Happy coding! ----------"
 	@echo "  Sub Directories:"
@@ -40,7 +39,7 @@ show:
 	@echo "\n"
 
 clean:
-	@echo "remove ./obj and ./bin..."
-	@rm -rf $(OBJDIR) $(BINDIR)
+	@echo "remove ./bin..."
+	@rm -rf $(BINDIR)
 
 .PHONY: show clean

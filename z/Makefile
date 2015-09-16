@@ -1,7 +1,7 @@
 ROOT = ..
 PLATFORM = $(shell $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
-include $(ROOT)/Make.include
+include $(ROOT)/Make.include.cxx
 
 #
 # all targets to build...
@@ -14,26 +14,12 @@ include $(ROOT)/Make.include
 
 #
 # all targets...
+# each of the source files has an entry point 'main()', so we can generate
+# the target names by this way...
 #
-TARGETS = $(strip array_to_BST happy_number min_path_sum queue_using_stacks \
-		  rm_linked_list_elements repeated_dna_seq)
+TARGETS = $(basename $(SOURCES))
 
 all: $(TARGETS)
-
-array_to_BST: $(BINDIR)/array_to_BST
-happy_number: $(BINDIR)/happy_number
-min_path_sum: $(BINDIR)/min_path_sum
-queue_using_stacks: $(BINDIR)/queue_using_stacks
-rm_linked_list_elements: $(BINDIR)/rm_linked_list_elements
-repeated_dna_seq: $(BINDIR)/repeated_dna_seq
-
-BINARIES = $(addprefix $(BINDIR)/, $(TARGETS))
-
-#
-# static pattern rules to make certain target...
-#
-$(BINARIES): $(BINDIR)/%: $(OBJDIR)/%.o
-	$(LINK.c) -o $@ $< $(STDLIBS)
 
 help:
 	@echo "Targets to build:"
@@ -41,7 +27,4 @@ help:
 	@echo "  'make <target>' to build single target;"
 	@echo "  'make all' to build whole targets.\n"
 
-.PHONY: all help \
-	array_to_BST happy_number min_path_sum queue_using_stacks \
-	rm_linked_list_elements repeated_dna_seq
-
+.PHONY: all help 

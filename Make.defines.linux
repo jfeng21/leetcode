@@ -13,5 +13,10 @@ RANLIB=echo
 AR=ar
 AWK=awk
 
+# Definitions required in all program directories to compile Java 
+# programs using javac.
+JFLAGS = -g
+JC = javac
+
 # Common temp files to delete from each directory.
 TEMPFILES=core core.* *.o temp.* *.out
