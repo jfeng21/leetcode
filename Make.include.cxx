@@ -14,18 +14,23 @@ $(BINDIR):
 %: %.c | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
+	@mv $@.dSYM $(BINDIR)/
 
 %: %.cc | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
+	@mv $@.dSYM $(BINDIR)/
 
 %: %.cpp | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
+	@mv $@.dSYM $(BINDIR)/
 
 %: %.cxx | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
+	@mv $@.dSYM $(BINDIR)/
+
 show:
 	@echo "\n---------- Happy coding! ----------"
 	@echo "  Sub Directories:"
