@@ -11,25 +11,39 @@ LOCALOBJS = $(addprefix $(OBJDIR)/, $(OBJNAMES))
 $(BINDIR):
 	@mkdir $(BINDIR)
 
+PLATFORM = $(shell $(ROOT)/systype.sh)
+
 %: %.c | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
-	@mv $@.dSYM $(BINDIR)/
-
+	@if [ $(PLATFORM) = "macos" ]; \
+		then \
+		mv $@.dSYM $(BINDIR)/; \
+	 fi\
+	
 %: %.cc | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
-	@mv $@.dSYM $(BINDIR)/
+	@if [ $(PLATFORM) = "macos" ]; \
+		then \
+		mv $@.dSYM $(BINDIR)/; \
+	 fi\
 
 %: %.cpp | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
-	@mv $@.dSYM $(BINDIR)/
+	@if [ $(PLATFORM) = "macos" ]; \
+		then \
+		mv $@.dSYM $(BINDIR)/; \
+	 fi\
 
 %: %.cxx | $(BINDIR)
 	$(LINK.c) $< $(STDLIBS) -o $@ 
 	@mv $@ $(BINDIR)/
-	@mv $@.dSYM $(BINDIR)/
+	@if [ $(PLATFORM) = "macos" ]; \
+		then \
+		mv $@.dSYM $(BINDIR)/; \
+	 fi\
 
 show:
 	@echo "\n---------- Happy coding! ----------"
