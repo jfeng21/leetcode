@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class 78Subsets{
+class Subsets_78{
 public List<List<Integer>> subsets(int[] nums){
 List<List<Integer>> res = new ArrayList<List<Integer>>();
 if(nums.length == 0 || nums == null)
@@ -29,7 +29,7 @@ for(int i = pos; i < nums.length; i++){
 
 public static void main(String[] args){
     int[] nums = {1,2,3};
-    Subsets sub = new Subsets();
+    Subsets_78 sub = new Subsets_78();
     List<List<Integer>> res = new ArrayList<List<Integer>>();
     res = sub.subsets(nums);
     System.out.println(result);
