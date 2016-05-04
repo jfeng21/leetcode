@@ -27,5 +27,12 @@ for(int i = pos; i < nums.length; i++){
 
 }
 
+public static void main(String[] args){
+    int[] nums = {1,2,3};
+    Subsets sub = new Subsets();
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    res = sub.subsets(nums);
+    System.out.println(result);
+}
 
 }
