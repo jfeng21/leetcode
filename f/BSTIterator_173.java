@@ -1,4 +1,4 @@
-class BSTIerator_173{
+class BSTIterator_173{
 
   private Stack<TreeNode> stack = new Stack<TreeNode>();
   
