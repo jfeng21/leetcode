@@ -1,4 +1,5 @@
 class BestTimeBuyStock_121{
+  //dp O(n), O(1)
   public int maxProfit(int[] prices){
     if(prices == null || prices.length == 0)
       return 0;
