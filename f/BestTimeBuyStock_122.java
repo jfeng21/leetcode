@@ -1,5 +1,5 @@
-class BestTimeBuyStock_122{
-//greedy
+class BestTimeBuyStockII_122{
+//greedy  O(n), O(1)
    public int maxProfit(int[] prices){
      if(prices == null || prices.length == 0)  return 0;
      int pro = 0;
