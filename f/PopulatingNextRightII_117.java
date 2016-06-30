@@ -9,11 +9,11 @@ class PopulatingNextRightII_117{
     prev = null;
     head = null;
     while(cur != null){
-      if(cur.left != null){
+      if(cur.left != null){   //current level left is not null
         if(prev != null)
-          prev.next = cur.left;
+           prev.next = cur.left;
         else
-          head = cur.left;   //shift to right
+           head = cur.left;   //shift to next level
         prev = cur.left;    //shift to next level
         }
       if(cur.right != null){
@@ -23,7 +23,7 @@ class PopulatingNextRightII_117{
            head = cur.right;
         prev = cur.right;
       }
-     cur = cur.next;
+     cur = cur.next; //shift to next level 
      }
     }
    
