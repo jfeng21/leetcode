@@ -3,7 +3,7 @@ class InorderSuccessor_285{
      TreeNode succ = null;
      while(root != null && root.val != p.val){
      //check p is in left or right
-     if(root.val > p.val)
+     if(root.val > p.val)  //p is on the left, succ is root
         {succ = root;
         root = root.left;}
     else{
@@ -12,9 +12,10 @@ class InorderSuccessor_285{
      }
      if(root == null)
        return null;
+       
      if(root.right == null)
        return succ;
-       
+     //inorder  
      root = root.right;
      while(root.left != null){
         root = root.left;
