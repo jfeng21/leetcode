@@ -1,17 +1,16 @@
 class BTPreorder_144{
+ //recursion
  List<Integer> res = new ArrayList<Integer>();
   public List<Integer> preOrderTraversal(TreeNode root){
     if(root == null)  return res;
-    preOrder(root);
+    preOrder(root, res);
     return res;
   }
-  private void preOrder(TreeNode node){
+  private void preOrder(TreeNode node, List<Integer> res){
     if(node == null)  return;
     res.add(node.val);
-    if(node.left != null)
-      res.add(node.left);
-    if(node.right != null)
-      res.add(node.right);
+    preOrder(node.left, res);
+    preOrder(node.right, res);
   }
 
 
