@@ -1,0 +1,65 @@
+class BSTInsertAndDelete{
+//delete: find the node and replace with min right subtree
+TreeNode root;
+public void deleteNode(TreeNode root, int key){
+   TreeNode node = deleteRec(root, key);
+}
+
+private TreeNode deleteRec(TreeNode root, int key){
+   if(root == null) return root;
+   //recur down the tree to find the key node
+   if(key < root.val)
+      root.left = deleteRec(root.left, key);
+   else if(key > root.val)
+      root.right = deleteRec(root.right, key);
+   //if the key is the same as root's key
+   else{
+      if(root.left == null)
+         return root.right;
+      else if(root.right == null)
+         return root.left;
+     //nodes with two children: get the inorder successor(smallest in the right subtree)
+     root.val = minVal(root.right);
+     //delete the inorder success
+     root.right = deleteRec(root.right, root.val);
+   }
+   return root;
+}
+
+private int minVal(TreeNode root){
+  int min = root.val;
+  while(root.left != null){
+    min = root.left.val;
+    root = root.left;
+  }
+  return min;
+}
+//insert
+private void insert(int key){
+  root = insertRecur(root, key);
+}
+private TreeNode insertRecur(TreeNode root, int key){
+   if(root == null){
+   root = new TreeNode(key);
+     return root;
+     }
+  //otherwise, recur down the tree
+  if(key < root.val){
+    root.left = insertRecur(root.left, key);
+  }else if(key > root.val){
+    root.right = insertRecur(root.right, key);
+  }
+  return root;
+}
+//inorder
+private void inorder(TreeNode root){
+  if(root != null){
+  inorder(root.left);
+  System.out.print(root.val + "");
+  inorder(root.right);
+  }
+  
+}
+
+
+}
