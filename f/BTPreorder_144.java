@@ -17,16 +17,20 @@ class BTPreorder_144{
 
 //stack
  List<Integer> list = new ArrayList<Integer>();
+ if(root == null)  return list;
  Stack<TreeNode> stack = new Stack<TreeNode>();
- while(node != null){
+ stack.push(root);
+ while(!stack.empty()){
+  TreeNode node = stack.pop();
   list.add(node.val);
+  //push in right, then left node
   if(node.right != null)
     stack.push(node.right);
+    if(node.left != null)
+   stack.push(node.left);
  }
- node = node.left;
- if(node == null && !stack.isEmpty()){
-   node = stack.pop();
- }
+ 
+
  return list;
  
 }
