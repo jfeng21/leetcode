@@ -10,16 +10,18 @@ public boolean isValidBST(TreeNode root){
   return isValid(root.left,low, Math.min(root.val, high)) && isValid(root.right, Math.max(low, root.val), high);
   }
   
-  //method 2: inorder traversal
+  //method 2: inorder traversal to check if the sequence is increasing
   private TreeNode prev;
   public boolean isValidBST(TreeNode root){
-  prev = null;
+  prev = null;   //need to prev node to track
   return inorder(root);
   }
   private boolean inorder(TreeNode root){
   if(root == null)  return true;
+  
+  
   if(inorder(root.left)){
-    if(prev != null && root.val <= prev.val)
+    if(prev != null && root.val <= prev.val)    //check condition
       return false;
     prev = root;
     return inorder(root.right);
