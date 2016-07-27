@@ -16,7 +16,7 @@ public int myAtio(String str){
     start++;
   }
   
-  for(int i = 0; i < str.length(); i++){
+  for(int i = start; i <len; i++){
      if(!Character.isDigit(charAt(i)))
        return (int)sum * sign;
     sum = sum * 10 + str.charAt(i) - '0';     
