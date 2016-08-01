@@ -1,0 +1,4 @@
+select wt1.ID
+from weather w1, weather w2
+where   w1.temperature > t2.temperature and
+      TO_DAYS(w1.DATE) - TO_DAYS(w2.DATE) = 1;
