@@ -14,5 +14,16 @@ for(int i = s.length() - 1; i >= 0; i--){
 return sb.toString();
 }
 
+//using split
+public String reverseWords(String s){
+   String[] words = s.trim()s.split("\\s+");
+   String res = "";
+   for(int i = words.length - 1; i > 0; i--){
+      res += words[i] + " ";
+      
+   }
+   return res + words[0];
+   
+}
 
 }
