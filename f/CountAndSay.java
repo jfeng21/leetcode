@@ -17,6 +17,35 @@ class CountAndSay{
      }
      return oldString;
   }
+  
+  //use arraylist to store all sequence
+  public String countAndSay2(int n){
+      if(n <= 0)
+         return "";
+      
+      ArrayList<String> res = new ArrayList<>();
+      res.add("1");
+      
+      for(int i = 1; i < n; i++){
+        res.add(findNext(result.get(i)));
+        
+      }
+      return res.get(n - 1);
+  }
 
+  public String findNext(String str){
+    String res = "";
+    int count = 1;
+    for(int i = 0; i < str.length() - 1; i++){
+      if(str.charAt(i) != str.charAt(i + 1)){
+        res += String.valueOf(count) + str.charAt(i);
+        count = 1;
+        continue;
+      }
+      count++;
+    }
+    res += String.valueOf(count) + str.charAt(str.length() - 1);
+    return res;
+  }
 
 }
