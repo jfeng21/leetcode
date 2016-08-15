@@ -17,6 +17,29 @@ class CountAndSay{
      }
      return oldString;
   }
+  //method 2:
+  public String countAndSay(int n){
+     if(n == 0)
+       return null;
+    if(n == 1)
+      return "1";
+      
+    String s = countAndSay(n - 1);
+    StringBuilder sb = new StringBuilder();
+    int len = s.length();
+    int count = 0;
+    
+    for(int i = 0; i < len; i++){
+      count++;
+      if(i == len - 1 || (i < len - 1 && s.charAt(i) != s.charAt(i + 1))){
+        sb.append(count);
+        sb.append(s.charAt(i));
+        count = 0;
+      }
+    }
+    
+    return sb.toString();
+  }
   
   //use arraylist to store all sequence
   public String countAndSay2(int n){
