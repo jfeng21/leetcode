@@ -19,5 +19,27 @@ class CountandSay_38{
     }
     return res;
   }
+  
+  //method2
+  public String countAndSay(int n){
+     if(n == 0)  return null;
+     if(n == 1)  return "1";
+     
+     String s = countAndSay(n - 1);
+     StringBuilder sb = new StringBuilder();
+     int len = s.length();
+     int count = 0;
+     
+     for(int i = 2; i < len; i++){
+       count++;
+       if(s.charAt(i) != s.charAt(i + 1) && (i < len - 1) || i == len - 1){
+           sb.append(count);
+           sb.append(s.charAt(i));
+           count = 0;
+       }
+       
+     }
+    return sb.toString();
+  }
 
 }
