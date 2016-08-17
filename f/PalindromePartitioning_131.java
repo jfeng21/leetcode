@@ -1,4 +1,5 @@
 class PalindromePartitioning_131{ 
+  //backtracking
   public List<List<String>> partition(String s){
     List<List<String>> res = new ArrayList<>();
     if(s == null)  return res;
@@ -13,16 +14,18 @@ class PalindromePartitioning_131{
         res.add(new ArrayList<String>(list));
         return;
       }
+      
       String substr = "";
-      for(int i = pos; i < s.length(); i++){
-        substr += s.charAt(i);
-        if(!isPalindrome(substr))
-          continue;
+      for(int i = pos, i < s.length(); i++){
+         substr += s.charAt(i);
+         if(!isPalindrome(substr))
+             continue;
         list.add(substr);
-        //backtracking
         helper(res, list, i + 1, s);
         list.remove(list.size() - 1);
+         
       }
+     
   }
   
   private boolean isPalindrome(String s){
