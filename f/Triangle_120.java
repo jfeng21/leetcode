@@ -9,12 +9,12 @@ class Triangle_120{
      int[][] dp = new int[row][col];
      int c = 0;
      for(Integer n : triangle.get(col - 1)){
-        dp[row - 1][c++] = n;
+         dp[row - 1][c++] = n;
      }
      
      for(int i = row - 2; i >= 0; i--){
        for(int j = 0; j < triangle.get(i).size(); j++){
-         dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle.get(i).get(j);
+          dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle.get(i).get(j);
        }
      }
      return dp[0][0];
