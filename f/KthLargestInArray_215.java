@@ -4,13 +4,15 @@ class KthLargestInArray_215{
     PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
     for(int num : nums){
        if(queue.size() < k)
-         queue.add(num);
-      else if(queue.peek < num){
-        queue.remove();
-        queue.add(num);
+          queue.offer(num);
+       else if(queue.peek() < num){
+          queue.remove();
+          queue.offer(num);
+       }
+         
       }
       
-    }
+    
     return queue.peek();
   }
 
