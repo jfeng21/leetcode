@@ -18,9 +18,9 @@ class PermutationsII_47{
      return;
      }
    for(int i = 0; i < nums.length; i++){
-     if(visited[i] == 1 || (i != 0 && nums[i] == nums[i - 1] && visited[i - 1] == 0))  //!!!!check if its visited
-       continue;
-    visited[i] = 1;
+     if(visited[i] == 1 ||i != 0 && (nums[i] == nums[i - 1] && visited[i - 1] == 0))
+         continue;
+     visited[i] = 1;  //if duplicated num, just keep 1
     list.add(nums[i]);
     helper(res, list, nums,visited);
     list.remove(list.size() - 1);
