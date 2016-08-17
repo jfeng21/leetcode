@@ -10,20 +10,22 @@ class Permutations_48{
   }
   
  private void helper(List<List<Integer>> res, ArrayList list, int[] nums){
-   if(nums.length == list.size()){
-     res.add(new ArrayList<>(list));
-     return;
-   }
-   
-   for(int i = 0; i < nums.length; i++){
-     if(list.contains(nums[i]))
-       continue;
-     list.add(nums[i]);
-     helper(res, list, nums);
-     list.remove(list.size() - 1);
-   
-   }
-   
+      //termination condition
+      if(list.size() == nums.length){
+        res.add(new ArrayList<Integer>(list));
+        return;
+      }
+      
+       for(int i = 0; i < nums.length; i++){
+         //check duplicate, continue till find new element
+         if(list.contains(nums[i]))
+           continue;
+         //before backtracking, add to list
+         list.add(nums[i]);
+         helper(res, list, nums);
+         list.remove(list.size() - 1);
+         
+       }
  
  }
 
